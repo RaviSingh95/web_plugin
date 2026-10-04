@@ -1,0 +1,27 @@
+{
+  "name": "web-notes-extension",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "dev": "npm run clean && concurrently -k -n app,content \"vite build --watch --mode development\" \"vite build --watch --mode development -c vite.content.config.ts\"",
+    "build": "tsc --noEmit && npm run clean && vite build && vite build -c vite.content.config.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "idb": "^8.0.0",
+    "pdfjs-dist": "^4.10.38",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}

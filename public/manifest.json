@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Web Notes",
+  "version": "0.2.0",
+  "description": "Collect text, images, links, screenshots and pages from websites and PDFs, grouped by where they came from.",
+  "permissions": [
+    "contextMenus",
+    "sidePanel",
+    "scripting",
+    "storage",
+    "tabs",
+    "favicon",
+    "unlimitedStorage"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "Open Web Notes"
+  },
+  "commands": {
+    "add-selection": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "Add selected text to notes"
+    },
+    "capture-area": {
+      "suggested_key": {
+        "default": "Alt+Shift+A"
+      },
+      "description": "Screenshot an area of the page"
+    }
+  }
+}
